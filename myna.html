@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script src="lib/myna.js"></script>
+<style>
+    .box{
+        width: 100%;
+        height: 200px;
+        background: #999;
+    }
+    .time-length{
+        color: red;
+    }
+</style>
+</head>
+<body>
+    <div class="code-warp"></div>
+    <audio id="audio" controls></audio>
+    <div>
+        <h1>音频时长：<span class="time-length"></span></h1>
+    </div>
+    <a id="download" href="">下载录音文件</a>
+    <fieldset>
+        <legend>录音 AUDIO</legend>
+        <div class="box"></div>
+        <input onclick="startRecording()" type="button" value="开始录音" />
+        <input onclick="pauseRecording()" type="button" value="暂停录音" />
+        <input onclick="continueRecording()" type="button" value="继续录音" />
+        <input onclick="stopRecording()" type="button" value="结束录音" />
+        <input onclick="playRecording()" type="button" value="播放录音" />
+        <input onclick="getAudioTime()" type="button" value="获取录音时长" />
+        <input onclick="getAudioFile()" type="button" value="获取录音文件" />
+        <input onclick="clearRecording()" type="button" value="清除录音" />
+    </fieldset>
+
+
+    <script>
+        var recorder;
+        var audioData = [];
+        var _audio = '';
+        var size = 0;
+        window.URL = window.URL || window.webkitURL;
+        console.log(recorder)
+        var audio = document.querySelector('audio');
+
+        // 开始录音
+        function startRecording() {
+            Myna.get(function (rec) {
+                recorder = rec;
+                recorder.start();
+            });
+        }
+
+        // 暂停录音
+        function pauseRecording(){
+            recorder.pause();
+        }
+
+        // 继续录音
+        function continueRecording(){
+            recorder.pause();
+        }
+
+        // 结束录音
+        function stopRecording() {
+            // 暂停录音
+            recorder.stop();
+            console.log(recorder.getBlobData());
+
+            // 下载
+            var download = document.getElementById('download');
+            recorder.download(download);
+        }
+
+        // 播放录音
+        function playRecording() {
+            $('#audio')[0].play();
+        }
+
+
+        // 获取音频时长
+        function getAudioTime(){
+            $('.time-length').html($('#audio')[0].duration);
+            console.log($('#audio')[0].duration)
+        }
+
+        // 获取音频文件用于上传使用
+        function getAudioFile(){
+            console.log(recorder.audioFile());
+        }
+
+        function clearRecording(){
+
+        }
+
+    </script>
+
+</body>
+</html>
