@@ -1,0 +1,24 @@
+{
+  "name": "mynajs",
+  "version": "0.0.2",
+  "description": "a plugin for webRTC recorder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xieyankun/Myna.git"
+  },
+  "keywords": [
+    "recorder",
+    "webRTC",
+    "sound"
+  ],
+  "author": "kira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xieyankun/Myna/issues"
+  },
+  "homepage": "https://github.com/xieyankun/Myna#readme"
+}
